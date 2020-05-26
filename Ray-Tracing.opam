@@ -1,0 +1,22 @@
+opam-version: "2.0"
+name: "Ray-Tracing"
+version: "~dev"
+synopsis: "ray tracing program"
+maintainer: "mariari <mariari@protonmail.com>"
+authors: "mariari <mariari@protonmail.com>"
+license: "MIT"
+
+homepage: "https://github.com/mariari/Ray-Tracing"
+bug-reports: "https://github.com/mariari/Ray-Tracing/issues"
+dev-repo: "git+https://github.com/mariari/Ray-Tracing.git"
+
+build: [
+  ["dune" "subst"] {pinned}
+  ["dune" "build" "-p" name "-j" jobs]
+]
+
+depends: [
+  "dune" {build}
+  "core"
+]
+

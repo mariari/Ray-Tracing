@@ -41,10 +41,12 @@ let generate_values_normalize ({height; width} as cord) =
 
 let report_progress_on_zero r g =
   if Float.(r = 0.)
-  then Out_channel.output_string
-         stderr
-         ("\r Scanlines remaining: " ^ Int.to_string (Int.of_float g) ^ " ");
-  Out_channel.flush stderr
+  then begin
+      Out_channel.output_string
+        stderr
+        ("\r Scanlines remaining: " ^ Int.to_string (Int.of_float g) ^ " ");
+      Out_channel.flush stderr
+  end
 
 let () =
   let cords = {width = 256; height = 256} in

@@ -12,6 +12,8 @@ let normalize_int col =
   let Vec3.{x;y;z} = normalize col in
   Int.of_float x, Int.of_float y, Int.of_float z
 
+let create_t ~r ~g ~b = create ~x:r ~y:g ~z:b
+
 let r = x
 
 let g = y

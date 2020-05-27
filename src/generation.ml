@@ -35,11 +35,8 @@ let generate_values_normalize ({height; width} as cord) =
       ~f:(fun (j, i) ->
         let trans curr orig =
           Float.of_int curr /. Float.of_int (Int.pred orig)
-         in
-         let r = trans i width in
-         let g = trans j height in
-         let b = 0.25 in
-         Color.create ~x:r ~y:g ~z:b)
+        in
+         Color.create_t ~r:(trans i width) ~g:(trans j height) ~b:0.25)
 
 
 let report_progress_on_zero r g =

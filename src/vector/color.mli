@@ -2,6 +2,8 @@ include Signatures.Vector3
 
 include Utilites.Sig with type t := t
 
+val create_t : r:float -> g:float -> b:float -> t
+
 val normalize : t -> t
 val normalize_int : t -> int * int * int
 

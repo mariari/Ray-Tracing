@@ -1,11 +1,10 @@
 open Core
 
-
 type foo = {
-     x : float;
-     y : float;
-     z : float
-  }
+    x : float;
+    y : float;
+    z : float
+}
 
 
 module Impl : sig
@@ -58,8 +57,13 @@ end = struct
   let length = l2_norm
 
 
+  (* Does this incur a cost *)
   let to_cordinates {x;y;z} = Types.{x;y;z}
+
+  let from_cordinates Types.{x;y;z} = {x;y;z}
 end
+
+include Types
 
 include Impl
 

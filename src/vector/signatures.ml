@@ -1,3 +1,6 @@
+
+(* TODO :: make t come first!?! *)
+
 module type Vector3 = sig
   type t
 
@@ -28,4 +31,6 @@ module type Vector3 = sig
   val length : t -> float
 
   val to_cordinates : t -> Types.cordinates
+
+  val from_cordinates : Types.cordinates -> t
 end

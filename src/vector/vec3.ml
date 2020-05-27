@@ -35,6 +35,12 @@ end = struct
     ; z = f z
     }
 
+  let x t = t.x
+
+  let y t = t.y
+
+  let z t = t.z
+
   let add = pointwise ~f:(+.)
 
   let prod x = map ~f:(( *. ) x)

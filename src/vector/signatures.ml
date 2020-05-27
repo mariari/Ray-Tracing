@@ -3,6 +3,12 @@ module type Vector3 = sig
 
   val create : x:float -> y:float -> z:float -> t
 
+  val x : t -> float
+
+  val y : t -> float
+
+  val z : t -> float
+
   val neg : t -> t
 
   val pointwise : f:(float -> float -> float) -> t -> t -> t

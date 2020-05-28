@@ -2,16 +2,19 @@ open Core
 
 module type Sig = sig
   type t
+
   val to_string : t -> string
-  val sub : t -> t -> t
-  val prod_vec : t -> t -> t
-  val div_vec : t -> t -> t
-  val dot : t -> t -> float
-  val cross : t -> t -> t
-  val unit : t -> t
+  val sub       : t -> t -> t
+  val prod_vec  : t -> t -> t
+  val div_vec   : t -> t -> t
+  val dot    : t -> t -> float
+  val cross  : t -> t -> t
+  val unit   : t -> t
+  val ( +| ) : t -> t -> t
+  val ( *| ) : float -> t -> t
 end
 
-module T (Vec : Signatures.Vector3) : (Sig with type t = Vec.t) = struct
+module T (Vec : Signatures.Vector3) = struct
   type t = Vec.t
 
   let to_string vec =
@@ -40,4 +43,6 @@ module T (Vec : Signatures.Vector3) : (Sig with type t = Vec.t) = struct
   let unit vec =
     Vec.div 3. vec
 
+  let ( +| ) = Vec.add
+  let ( *| ) = Vec.prod
 end

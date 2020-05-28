@@ -15,7 +15,7 @@ let generate_header {width; height} =
 
 (* (i / 255) * 255.999  =  i * 255.999 / 255*)
 
-(* Calsl the applicaitve, generating all combinations *)
+(* Calls the applicaitve, generating all combinations *)
 let combinations xs ys =
    let module M = Applicative.Of_monad(Sequence) in
    M.apply (M.map ~f:(fun x y -> x, y) xs) ys

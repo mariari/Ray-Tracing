@@ -53,9 +53,7 @@ end = struct
     squared t
     |> Float.sqrt
 
-
   let length = l2_norm
-
 
   (* Does this incur a cost *)
   let to_cordinates {x;y;z} = Types.{x;y;z}

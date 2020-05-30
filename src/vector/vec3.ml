@@ -1,11 +1,10 @@
-open Core
+open Base
 
 type foo = {
     x : float;
     y : float;
     z : float
 }
-
 
 module Impl : sig
   type nonrec t = foo

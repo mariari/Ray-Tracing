@@ -1,4 +1,4 @@
-open Core
+open Core_kernel
 
 module M : (Signatures.Vector3 with type t = Vec3.t) = Vec3
 

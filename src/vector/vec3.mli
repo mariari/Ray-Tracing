@@ -1,8 +1,8 @@
 type foo = {
-     x : float;
-     y : float;
-     z : float
-  }
+    x : float;
+    y : float;
+    z : float
+}
 
 type t = foo
 

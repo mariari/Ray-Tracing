@@ -17,6 +17,6 @@ build: [
 
 depends: [
   "dune" {build}
-  "core"
+  "core_kernel"
 ]
 

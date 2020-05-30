@@ -4,7 +4,7 @@ module M : (Signatures.Vector3 with type t = Vec3.t) = Vec3
 
 include  M
 
-include Utilites.T(M)
+include Utilitie.T(M)
 
 let normalize = prod 255.999
 

@@ -1,6 +1,6 @@
 include Signatures.Vector3
 
-include Utilites.Sig with type t := t
+include Utilitie.Sig with type t := t
 
 val create_t : r:float -> g:float -> b:float -> t
 

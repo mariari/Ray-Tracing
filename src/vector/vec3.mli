@@ -8,4 +8,4 @@ type t = foo
 
 include Signatures.Vector3 with type t := t
 
-include Utilites.Sig with type t := t
+include Utilitie.Sig with type t := t

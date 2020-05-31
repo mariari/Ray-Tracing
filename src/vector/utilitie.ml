@@ -12,9 +12,10 @@ module type Sig = sig
   val unit   : t -> t
   val ( +| ) : t -> t -> t
   val ( *| ) : float -> t -> t
+  val ( -| ) : t -> t -> t
 end
 
-module T (Vec : Signatures.Vector3) = struct
+module T (Vec : Signature.Vector3) = struct
   type t = Vec.t
 
   let to_string vec =
@@ -41,8 +42,10 @@ module T (Vec : Signatures.Vector3) = struct
                ~z:(cord1.x *. cord2.y -. cord1.y *. cord2.x)
 
   let unit vec =
-    Vec.div 3. vec
+    Vec.div (Vec.l2_norm vec) vec
 
   let ( +| ) = Vec.add
   let ( *| ) = Vec.prod
+
+  let ( -| ) = sub
 end

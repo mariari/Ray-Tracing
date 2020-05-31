@@ -6,6 +6,6 @@ type foo = {
 
 type t = foo
 
-include Signatures.Vector3 with type t := t
+include Signature.Vector3 with type t := t
 
 include Utilitie.Sig with type t := t

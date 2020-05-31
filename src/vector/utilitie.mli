@@ -10,10 +10,11 @@ module type Sig = sig
   val unit   : t -> t
   val ( +| ) : t -> t -> t
   val ( *| ) : float -> t -> t
+  val ( -| ) : t -> t -> t
 end
 
 
-module T : functor (Vec : Signatures.Vector3) ->
+module T : functor (Vec : Signature.Vector3) ->
   sig
     include Sig with type t = Vec.t
 end

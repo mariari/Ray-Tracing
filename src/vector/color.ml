@@ -1,6 +1,6 @@
 open Core_kernel
 
-module M : (Signatures.Vector3 with type t = Vec3.t) = Vec3
+module M : (Signature.Vector3 with type t = Vec3.t) = Vec3
 
 include  M
 

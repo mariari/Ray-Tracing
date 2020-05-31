@@ -8,7 +8,7 @@ type foo = {
 
 module Impl : sig
   type nonrec t = foo
-  include Signatures.Vector3 with type t := t
+  include Signature.Vector3 with type t := t
 end = struct
 
   type nonrec t = foo

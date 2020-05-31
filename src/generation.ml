@@ -21,7 +21,7 @@ type cord = {
  * on the y coordinate
  *)
 (* notice the math
- * (1 - t, 1 - t, 1 - t) + (½t, .7t, t) = (1 - 0.3t, 1)
+ * (1 - t, 1 - t, 1 - t) + (½t, .7t, t) = (1 - ½t, 1 - 0.3t, 1)
  *)
 let ray_color (r : Ray.t) =
   let unit_dir = Vec3.unit r.dir in
@@ -79,7 +79,10 @@ let generate_values_normalize_gadiant cord =
 
 
 let generate_values_blue_gradiant
-      {height; width} origin View.{height = view_h; focal_length; width = view_w} =
+      ~file
+      {height; width}
+      origin
+      View.{height = view_h; focal_length; width = view_w} =
   let horizontal = Vec3.create ~x:view_w ~y:0.     ~z:0. in
   let vertical   = Vec3.create ~x:0.     ~y:view_h ~z:0. in
   let focal_vec  = Vec3.create ~x:0.     ~y:0.     ~z:focal_length in
@@ -94,20 +97,21 @@ let generate_values_blue_gradiant
       in
       let pixel_color = ray_color r in
       report_progress_on_zero j i;
-      Color.write pixel_color)
+      Color.write ~file pixel_color)
 
-let first_image () =
+let first_image =
   let cords = {width = 256; height = 256} in
-  Out_channel.output_string stdout (generate_header cords);
-  generate_values_normalize_gadiant cords
-  |> Sequence.iter
-      ~f:(fun col ->
-        let normal = Color.normalize col in
-        report_progress_on_zero_f (Color.r normal) (Color.g normal);
-        Color.write_no_normal normal)
+  Out_channel.with_file
+    ~f:(fun file ->
+      Out_channel.output_string file (generate_header cords);
+      generate_values_normalize_gadiant cords
+      |> Sequence.iter
+          ~f:(fun col ->
+            let normal = Color.normalize col in
+            report_progress_on_zero_f (Color.r normal) (Color.g normal);
+            Color.write_no_normal ~file normal))
 
-
-let second_image () =
+let second_image =
   let aspect_ratio = 16.0 /. 9.0 in
   let cords =
     {width = 384; height = Int.of_float (384. /. aspect_ratio)}
@@ -116,9 +120,13 @@ let second_image () =
     View.{ height = 2.; width = aspect_ratio *. 2.; focal_length = 1.}
   in
   let origin = Vec3.create ~x:0. ~y:0. ~z:0. in
-  Out_channel.output_string stdout (generate_header cords);
-  generate_image_range cords
-  |> generate_values_blue_gradiant cords origin view
+  Out_channel.with_file
+    ~f:(fun file ->
+      Out_channel.output_string file (generate_header cords);
+      generate_image_range cords
+      |> generate_values_blue_gradiant ~file cords origin view
+    )
 
 let () =
-  second_image ()
+  (* first_image "foo.ppm" *)
+  second_image "foo2.ppm"

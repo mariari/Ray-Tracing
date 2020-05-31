@@ -21,12 +21,12 @@ let g = y
 let b = z
 
 (** [write_no_normal] prints the color as is, without any normalization  *)
-let write_no_normal Vec3.{x;y;z} =
+let write_no_normal Vec3.{x;y;z} ~file =
   String.(concat ~sep:" "
                  (List.map ~f:(Fn.compose Int.to_string Float.to_int) [x; y; z]) ^ "\n")
-  |> Out_channel.output_string stdout
+  |> Out_channel.output_string file
 
 (** [write] normalizes the color then prints it *)
-let write col =
+let write col ~file =
   normalize col
-  |> write_no_normal
+  |> write_no_normal ~file

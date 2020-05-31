@@ -11,5 +11,5 @@ val r : t -> float
 val g : t -> float
 val b : t -> float
 
-val write : t -> unit
-val write_no_normal : t -> unit
+val write           : t -> file:Core_kernel.Out_channel.t -> unit
+val write_no_normal : t -> file:Core_kernel.Out_channel.t -> unit

@@ -1,17 +1,17 @@
 open Base
 
-type foo = {
+type t = {
     x : float;
     y : float;
     z : float
 }
 
 module Impl : sig
-  type nonrec t = foo
+  type nonrec t = t
   include Signature.Vector3 with type t := t
 end = struct
 
-  type nonrec t = foo
+  type nonrec t = t
 
   let create ~x ~y ~z = {x; y; z}
 
@@ -62,6 +62,8 @@ end
 
 include Types
 
-include Impl
+include (Impl : module type of Impl with type t := t)
 
-include Utilitie.T(Impl)
+(* Past OCaml 4.08 you can just say *)
+(* include Utilitie.T(M) *)
+include (Utilitie.T(Impl) : module type of Utilitie.T(Impl) with type t := t)

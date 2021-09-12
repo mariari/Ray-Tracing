@@ -13,7 +13,6 @@ module type Sig = sig
   val ( -| ) : t -> t -> t
 end
 
-
 module T : functor (Vec : Signature.Vector3) ->
   sig
     include Sig with type t = Vec.t

@@ -4,7 +4,9 @@ module M : (Signature.Vector3 with type t = Vec3.t) = Vec3
 
 include  M
 
-include Utilitie.T(M)
+(* Past OCaml 4.08 you can just say *)
+(* include Utilitie.T(M) *)
+include (Utilitie.T(M) : module type of Utilitie.T(M) with type t := t)
 
 let normalize = prod 255.999
 
